@@ -205,6 +205,9 @@ def main():
                 print("Invalid number of arguments.")
                 continue
             name, phone = args
+            if not phone.isdigit() or len(phone) != 10:
+                print("Phone number must be a 10-digit number.")
+                continue
             record = Record(name)
             record.add_phone(phone)
             book.add_record(record)
@@ -217,6 +220,9 @@ def main():
             name, new_phone = args
             record = book.find(name)
             if record:
+                if not new_phone.isdigit() or len(new_phone) != 10:
+                    print("New phone number must be a 10-digit number.")
+                    continue
                 record.edit_phone(record.phones[0].value, new_phone)
                 print(f"Phone number changed for {name}.")
             else:
@@ -259,6 +265,5 @@ def main():
         else:
             print("Invalid command. Type 'help' to see available commands.")
 
-# Точка входу в програму. Код у цьому блоку буде виконаний тільки тоді, коли файл запускається напряму, а не імпортується як модуль.
-if __name__ == "__main__": 
-    main() # Виклик головної функції програми.
+if __name__ == "__main__":
+    main()
